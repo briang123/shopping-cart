@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Heading>
-        <h1>Brian's Demo Store</h1>
+        <h1>Demo Store</h1>
       </Heading>
       <Container>
         <Wrapper>
