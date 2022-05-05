@@ -1,10 +1,20 @@
 import styled, { css } from 'styled-components';
 
+export const Heading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+  width: 100vw;
+  height: 75px;
+  background-color: var(--shade4);
+`;
+
 export const Container = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  margin-top: 75px;
+  margin-top: 25px;
   height: 100vh;
   width: 100vw;
 `;
@@ -12,7 +22,7 @@ export const Container = styled.div`
 export const Wrapper = styled.section`
   width: 80vw;
   background-color: var(--shade1);
-  border-radius: 8px;
+  border-radius: 15px;
   padding: 40px;
   display: flex;
 `;
@@ -50,6 +60,33 @@ export const ImageContainer = styled.div`
   border-radius: 10px;
 `;
 
+export const RatingContainer = styled.div`
+  width: 75px;
+  height: 20px;
+  border-radius: 10px;
+  margin-left: 40px;
+  padding: 0px;
+  border: 1px solid var(--checkout);
+  overflow: hidden;
+  position: relative;
+`;
+
+export const RatingFill = styled.div`
+  ${({ rating }) => css`
+    height: 100%;
+    display: block;
+    width: ${(rating / 5) * 100}%;
+    color: var(--white);
+    line-height: 1.6rem;
+    font-size: 0.8em;
+    font-weight: 500;
+    position: absolute;
+    text-align: end;
+    padding-right: 5px;
+    background-color: var(--checkout);
+  `}
+`;
+
 export const ProductDetailsAndControls = styled.div`
   display: flex;
   justify-content: center;
@@ -72,7 +109,11 @@ export const Title = styled.h3`
 `;
 export const Price = styled.h4``;
 export const Description = styled.div``;
-export const BottomRow = styled.div``;
+export const BottomRow = styled.div`
+  display: flex;
+  gap: 50;
+  align-items: center;
+`;
 
 export const Category = styled.span`
   font-size: 0.8em;
@@ -123,9 +164,17 @@ export const Button = styled.button`
   }
 `;
 
-export const CheckoutButton = styled(Button)`
-  background-color: var(--shade3);
+export const InCartLabel = styled.h3`
+  margin: 10px 0;
+  color: var(--checkout);
+`;
+
+export const AddToCartButton = styled(Button)`
+  background-color: var(--primary);
   margin: 20px 0px;
+  &:disabled {
+    cursor: default;
+  }
 `;
 
 export const CounterButton = styled(Button)`
@@ -138,13 +187,89 @@ export const CounterButton = styled(Button)`
 `;
 
 export const Checkout = styled.section`
-  position: sticky;
-  top: 50px;
+  top: 25px;
   width: 450px;
-  min-height: 600px;
-  height: 80vh;
+  height: 100%;
   background-color: var(--shade3);
-  border-radius: 8px;
+  border-radius: 15px;
   padding: 20px;
   text-align: center;
+`;
+
+export const CartProductRow = styled.div`
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--shade4);
+  display: flex;
+  justify-content: flex-start;
+  height: auto;
+`;
+
+export const CartImageContainer = styled.div`
+  width: 50px;
+  min-width: 50px;
+  padding: 5px;
+  background-color: var(--white);
+  border-radius: 10px;
+`;
+
+export const CartProductDetails = styled.div`
+  padding: 0px 15px;
+  width: 100%;
+  font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+`;
+
+export const CartProductTitle = styled.div`
+  font-weight: 600;
+  text-align: left;
+`;
+
+export const CartTotalPriceContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  & label {
+    font-weight: bold;
+  }
+`;
+
+export const RemoveCartButton = styled(Button)`
+  background-color: var(--danger);
+  color: var(--white);
+  font-size: 0.9em;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+`;
+
+export const SubTotalRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0px 50px;
+  font-size: 1.2rem;
+`;
+
+export const CheckoutButton = styled(Button)`
+  background-color: var(--checkout);
+  color: var(--white);
+  margin: 20px 0px;
+  &:disabled {
+    cursor: default;
+  }
+`;
+
+export const CartEmptyMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 300px;
+  font-size: 2rem;
+  color: var(--shade4);
+  font-weight: 600;
 `;

@@ -5,6 +5,9 @@
   --shade4: #868b8e;
   --white: #fdfdfd;
   --black: #0a0708;
+  --danger: #c20114;
+  --primary: var(--shade3);
+  --checkout: #009200;
 }
 *,
 *::before,
