@@ -41,6 +41,6 @@ export default function useFetch(url) {
     getData();
   }, [url]);
 
-  const isLoading = ['IDLE', 'PENDING'].includes(status);
+  const isLoading = ['IDLE', 'PENDING'].includes(status.toUpperCase());
   return { results, isLoading, status };
 }

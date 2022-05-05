@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCounter } from '../../hooks';
-import { CounterButton } from '../../App.styles';
+import { CounterButton } from './Products.styles';
 
 export const ProductCounter = ({ productId, setProductQuantity }) => {
   const { decrement, increment, onChangeValue, value } = useCounter({
