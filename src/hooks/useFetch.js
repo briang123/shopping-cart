@@ -1,43 +1,46 @@
-import { useEffect, useState, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 
 const fetchReducer = (state, action) => {
-  const { type, payload } = action;
+  const { type, payload, error } = action;
 
   switch (type) {
-    case 'idle': {
-      return { ...state, status: 'idle' };
+    case 'IDLE': {
+      return { ...state, status: 'IDLE' };
     }
-    case 'pending': {
-      return { ...state, status: 'pending' };
+    case 'PENDING': {
+      return { ...state, status: 'PENDING' };
     }
-    case 'success': {
+    case 'SUCCESS': {
       return { ...state, results: payload, status: 'resolved' };
     }
-    case 'error': {
-      return { ...state, results: payload, status: 'rejected' };
+    case 'ERROR': {
+      return { ...state, results: payload, error, status: 'rejected' };
     }
     default:
       throw new Error(`Invalid type: ${type}`);
   }
 };
+
 export default function useFetch(url) {
-  // const [data, setData] = useState([]);
   const [{ results, status }, dispatch] = useReducer(fetchReducer, {
     results: null,
-    status: 'idle',
+    status: 'IDLE',
     endpoint: url,
   });
 
   useEffect(() => {
     const getData = async () => {
-      const result = await fetch(url);
-      const json = await result.json();
-      dispatch({ type: 'success', payload: json });
-      //setData(json);
+      try {
+        const result = await fetch(url);
+        const json = await result.json();
+        dispatch({ type: 'SUCCESS', payload: json });
+      } catch (error) {
+        dispatch({ type: 'ERROR', error, payload: [] });
+      }
     };
     getData();
   }, [url]);
 
-  const isLoading = ['idle', 'pending'].includes(status);
+  const isLoading = ['IDLE', 'PENDING'].includes(status);
   return { results, isLoading, status };
 }
